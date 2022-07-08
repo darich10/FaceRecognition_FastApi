@@ -1,5 +1,8 @@
-deepface~=0.0.75
 fastapi~=0.78.0
 python-multipart
 Pillow~=9.2.0
 numpy~=1.23.0
+# Face
+deepface~=0.0.75
+mtcnn~=0.1.1
+scikit-image~=0.19.3
