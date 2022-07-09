@@ -35,8 +35,7 @@ def find_face(image: np) -> np:
     return face
 
 
-def face_detection(path: str):
-    image = read_image(path)
+def face_detection(image: np):
     image = find_face(image)
     image = resize(image, (112, 112))
     image = preprocessing(image)
@@ -50,7 +49,8 @@ def preprocessing(image: np) -> np:
 
 
 if __name__ == "__main__":
-    img = face_detection("../images/0000001.jpg")
+    img = read_image("../images/0000001.jpg")
+    img = face_detection(img)
     print(img.shape)
     plt.imshow(img, interpolation='nearest')
     plt.show()

@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 import numpy as np
 
 
-model = load_model("../keras_models/ArcFace")  # Load model
+model = load_model("FaceRecognition/keras_models/ArcFace")  # Load model
 
 
 def predict(face_image: np):
