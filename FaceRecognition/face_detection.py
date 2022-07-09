@@ -4,6 +4,8 @@ from mtcnn.mtcnn import MTCNN
 import numpy as np
 from matplotlib import pyplot as plt
 
+detector = MTCNN()
+
 
 def read_image(path: str) -> np:
     """
@@ -21,7 +23,6 @@ def find_face(image: np) -> np:
     :param image: Original image
     :return: Face image if exist
     """
-    detector = MTCNN()
     # create the detector, using default weights
     # detect faces in the image
     results = detector.detect_faces(image)
@@ -38,6 +39,13 @@ def face_detection(path: str):
     image = read_image(path)
     image = find_face(image)
     image = resize(image, (112, 112))
+    image = preprocessing(image)
+    return image
+
+
+def preprocessing(image: np) -> np:
+    image -= 127.5
+    image /= 128
     return image
 
 
