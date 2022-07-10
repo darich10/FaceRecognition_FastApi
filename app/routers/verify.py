@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 import io
 
-from FaceRecognition.face_verify import verify
+from FaceRecognition import face_verify
 from FaceRecognition.face_detection import face_detection
 
 router = APIRouter(
@@ -31,5 +31,9 @@ async def verify(
     img2 = image2.file.read()
     img2_encoded = np.array(Image.open(io.BytesIO(img2)))
     img = [face_detection(img1_encoded), face_detection(img2_encoded)]
-    score = verify(img)
-    return {"score": score}
+    score = face_verify.verify(img)
+    verified = True if score >= 0.5 else False
+    return {
+        "verified": verified,
+        "score": score
+    }

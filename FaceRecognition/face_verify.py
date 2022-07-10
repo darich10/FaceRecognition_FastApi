@@ -28,10 +28,10 @@ def cosine_similarity(list_embeddings: List):
 
 def verify(list_image: List) -> float:
     embedding_list = []
-    for image in list_image:
-        embedding_list.append(predict(image))
+    for im in list_image:
+        embedding_list.append(predict(im))
     score = cosine_similarity(embedding_list)
-    return score
+    return float(score)
 
 
 if __name__ == "__main__":
