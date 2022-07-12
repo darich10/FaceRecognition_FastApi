@@ -1,8 +1,11 @@
-from skimage import io
+import skimage
 from skimage.transform import resize
 from mtcnn.mtcnn import MTCNN
 import numpy as np
 from matplotlib import pyplot as plt
+from PIL import Image
+import io
+from fastapi import File
 
 detector = MTCNN()
 
@@ -13,7 +16,7 @@ def read_image(path: str) -> np:
     :param path: image file path
     :return: image numpy
     """
-    image = io.imread(path)
+    image = skimage.io.imread(path)
     return image
 
 
@@ -35,16 +38,36 @@ def find_face(image: np) -> np:
     return face
 
 
-def face_detection(image: np):
-    image = find_face(image)
-    image = resize(image, (112, 112))
-    image = preprocessing(image)
-    return image
+def face_detection(im: np):
+    """
+
+    :param image:
+    :return:
+    """
+    im = find_face(im)
+    im = resize(im, (112, 112))
+    # im = preprocessing(im)
+    return im
 
 
-def preprocessing(image: np) -> np:
-    image -= 127.5
-    image /= 128
+def preprocessing(im: np) -> np:
+    """
+    Preprocess the image according to
+    :param im: numpy array of face image
+    :return: numpy array of normalized image
+    """
+    im -= 127.5
+    im /= 128
+    return im
+
+
+def read_bytes_img(image: File) -> np:
+    """
+    Read a byte image and convert to a numpy array
+    :param image: bytes image
+    :return: numpy array
+    """
+    image = np.asarray(Image.open(io.BytesIO(image)))
     return image
 
 

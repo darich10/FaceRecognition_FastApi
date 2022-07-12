@@ -31,6 +31,7 @@ def verify(list_image: List) -> float:
     for im in list_image:
         embedding_list.append(predict(im))
     score = cosine_similarity(embedding_list)
+    print(score)
     return float(score)
 
 
