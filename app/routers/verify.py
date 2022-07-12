@@ -35,10 +35,10 @@ async def verify(
         image2: UploadFile = File(...)
 ):
     """
-    this path operation compare two face images and return if is verified and the distance between embeddings vectors
+    This path operation compare two face images and return if is verified and the distance between embeddings vectors
     :param image1: First person image
     :param image2: Second person image
-    :return: ResultsVerify
+    :return: ResultsVerify: Model response
     """
     img1 = read_bytes_img(image1.file.read())
     img2 = read_bytes_img(image2.file.read())

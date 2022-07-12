@@ -38,11 +38,11 @@ def find_face(image: np) -> np:
     return face
 
 
-def face_detection(im: np):
+def face_detection(im: np) -> np:
     """
-
-    :param image:
-    :return:
+    Run the process to find a face in an image
+    :param im: An image of a person
+    :return:im; Return a face cropped with model input size
     """
     im = find_face(im)
     im = resize(im, (112, 112))
@@ -52,7 +52,7 @@ def face_detection(im: np):
 
 def preprocessing(im: np) -> np:
     """
-    Preprocess the image according to
+    Normalize the face image
     :param im: numpy array of face image
     :return: numpy array of normalized image
     """
