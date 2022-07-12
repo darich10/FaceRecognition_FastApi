@@ -5,7 +5,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image
 import io
-from fastapi import File
+from fastapi import File, HTTPException
+import logging
+
+logger = logging.getLogger(__name__)
 
 detector = MTCNN()
 
@@ -28,13 +31,17 @@ def find_face(image: np) -> np:
     """
     # create the detector, using default weights
     # detect faces in the image
-    results = detector.detect_faces(image)
-    # extract the bounding box from the first face
-    x1, y1, width, height = results[0]['box']
-    # bug fix
-    x1, y1 = abs(x1), abs(y1)
-    x2, y2 = x1 + width, y1 + height
-    face = image[y1:y2, x1:x2]
+    try:
+        results = detector.detect_faces(image)
+        # extract the bounding box from the first face
+        x1, y1, width, height = results[0]['box']
+        # bug fix
+        x1, y1 = abs(x1), abs(y1)
+        x2, y2 = x1 + width, y1 + height
+        face = image[y1:y2, x1:x2]
+    except Exception as e:
+        logger.error(e)
+        raise HTTPException(status_code=404, detail="Face not Found")
     return face
 
 

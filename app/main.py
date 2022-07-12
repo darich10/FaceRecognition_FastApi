@@ -6,9 +6,12 @@ from fastapi import FastAPI
 from .routers import verify
 
 # TODO: Error Handling
-# TODO: Docs
 # TODO: Dockerfile
 # TODO: Post Heroku
+
+FORMAT = "%(levelname)s:%(message)s"
+logging.basicConfig(format=FORMAT, level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 app.include_router(verify.router)
@@ -20,5 +23,6 @@ async def root():
     Operation path home
     :return:
     """
-    return {"Title": "Face Recognition by DeepFace", "By": "Darío Rosas", "Date": "08/07/2022"}
+    logger.info("Home Face Verification")
+    return {"Title": "Face Recognition", "By": "Darío Rosas", "Date": "08/07/2022"}
 
