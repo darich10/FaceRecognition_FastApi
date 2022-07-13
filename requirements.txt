@@ -1,9 +1,10 @@
 fastapi~=0.78.0
+uvicorn~=0.18.2
 python-multipart
 Pillow~=9.2.0
 numpy~=1.23.0
 # Face
-deepface~=0.0.75
+#deepface~=0.0.75
 mtcnn~=0.1.1
 scikit-image~=0.19.3
 tensorflow~=2.9.1

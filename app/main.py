@@ -5,8 +5,6 @@ import logging
 from fastapi import FastAPI
 from .routers import verify
 
-# TODO: Error Handling
-# TODO: Dockerfile
 # TODO: Post Heroku
 
 FORMAT = "%(levelname)s:%(message)s"
