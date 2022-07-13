@@ -1,3 +1,6 @@
 .idea
 images
 FaceRecognition/keras_models
+FaceRecognition/__pycache__/
+app/__pycache__/
+app/routers/__pycache__/
