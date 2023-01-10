@@ -2,7 +2,7 @@
 
 Rest service for One to One face recognition task based on ArcFace model using FastAPI.
 
-## Citation
+## References
 
 @article{deng2018arcface,
 title={ArcFace: Additive Angular Margin Loss for Deep Face Recognition},
